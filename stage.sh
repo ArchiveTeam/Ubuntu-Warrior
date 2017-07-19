@@ -50,5 +50,5 @@ chmod +x /root/boot.sh
 #Update and install Docker
 apk update
 apk add docker
-
+rc-update add docker boot
 echo "Script Completed, poweroff the virtual machine and package for upload!"
