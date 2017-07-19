@@ -11,6 +11,7 @@ fi
 echo "=== Archive Team Warrior ==="
 echo "You can now login to the web interface at"
 echo " http://127.0.0.1:8001"
+sleep 120
 while true; do
 sleep 10
 if [ ! "$(docker ps -a | grep archiveteam/warrior-dockerfile)" ]; then
