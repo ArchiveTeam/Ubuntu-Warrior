@@ -39,6 +39,8 @@ tty6::respawn:/sbin/getty 38400 tty6
 ::shutdown:/sbin/openrc shutdown
 EOT
 
+echo "==== Archive Team Warrior ====" > /etc/motd
+
 # add community sources
 echo "http://dl-3.alpinelinux.org/alpine/v3.6/community" >> /etc/apk/repositories
 set > /root/env.sh
