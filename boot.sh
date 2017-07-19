@@ -1,4 +1,5 @@
 #!/bin/sh
+source /root/env.sh
 reset
 echo === Starting Archive Team Warrior ===
 echo Checking Internet
@@ -16,6 +17,7 @@ fi
 done
 echo "Pulling Latest scripts"
 while true; do
+rm /root/startup.sh
 wget -q https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/startup.sh -O /root/startup.sh
 if [ $? -eq 0 ]; then
     echo "Done!"
@@ -29,3 +31,5 @@ done
 
 chmod +x /root/startup.sh
 /root/startup.sh
+echo ==== Startup Script Failed, Restarting! ====
+sleep 1
