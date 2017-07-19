@@ -4,14 +4,14 @@ reset
 echo === Starting Archive Team Warrior ===
 echo Checking Internet
 while true; do
-wget -q --spider http://google.com
+wget -q --spider https://github.com
 
 if [ $? -eq 0 ]; then
     echo "Online!"
     break
 else
     echo "Unable to access the Internet"
-    echo "Trying google.com again in 5 seconds"
+    echo "Trying github.com again in 5 seconds"
     sleep 5
 fi
 done
