@@ -15,4 +15,39 @@
 # Disk to use: sda | Yes Erase | Use it: sys
 # =REBOOT=
 # apk add openssl
-# wget 
+# wget https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/stage.sh
+
+# /etc/inittab 
+rm /etc/inittab
+cat <<EOT >> /etc/inittab
+::sysinit:/sbin/openrc sysinit
+::sysinit:/sbin/openrc boot
+::wait:/sbin/openrc default
+
+# Set up a couple of getty's
+tty1::respawn:/bin/sh /root/boot.sh
+tty2::respawn:/sbin/getty 38400 tty2
+tty3::respawn:/sbin/getty 38400 tty3
+tty4::respawn:/sbin/getty 38400 tty4
+tty5::respawn:/sbin/getty 38400 tty5
+tty6::respawn:/sbin/getty 38400 tty6
+
+# Stuff to do for the 3-finger salute
+::ctrlaltdel:/sbin/reboot
+
+# Stuff to do before rebooting
+::shutdown:/sbin/openrc shutdown
+EOT
+
+# add community sources
+echo "http://dl-3.alpinelinux.org/alpine/v3.6/community" >> /etc/apk/repositories
+set > /root/env.sh
+
+#download boot script
+wget https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/boot.sh -O /root/boot.sh
+chmod +x /root/boot.sh
+
+#Update and install Docker
+apk update
+apk add docker
+
