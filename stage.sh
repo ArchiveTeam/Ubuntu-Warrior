@@ -51,3 +51,4 @@ chmod +x /root/boot.sh
 apk update
 apk add docker
 
+echo "Script Completed, poweroff the virtual machine and package for upload!"
