@@ -8,9 +8,15 @@ echo "Startup Failure! Unable to start the Docker Instance, Sleeping 30 Seconds"
 sleep 30
 exit
 fi
+echo
 echo "=== Archive Team Warrior ==="
-echo "You can now login to the web interface at"
+echo
+echo "The warrior has successfully started up."
+echo
+echo "To manage your warrior, open your web browser"
+echo "and login to the web interface at"
 echo " http://127.0.0.1:8001"
+echo
 sleep 120
 while true; do
 sleep 10
