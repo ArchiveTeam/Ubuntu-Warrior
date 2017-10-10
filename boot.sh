@@ -27,9 +27,11 @@ fi
 done
 
 echo "Pulling Latest scripts"
-cp /root/startup.sh /root/startup.sh.bak
+if [ -f /root/startup.sh ]; then
+    cp /root/startup.sh /root/startup.sh.bak
+fi
 while true; do
-rm /root/startup.sh /root/startup.sh-new
+rm -f /root/startup.sh /root/startup.sh-new
 wget -q https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/$BRANCH/startup.sh -O /root/startup.sh-new
 if [ $? -eq 0 ]; then
     mv /root/startup.sh-new /root/startup.sh
