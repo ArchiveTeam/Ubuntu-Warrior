@@ -1,6 +1,7 @@
 #!/bin/sh
 reset
 echo "=== Starting Warrior Download ==="
+rm -f /root/docker_container_id.txt
 docker run -d -p 8001:8001 --cidfile="/root/docker_container_id.txt" \
     archiveteam/warrior-dockerfile
 
@@ -8,7 +9,7 @@ reset
 if [ ! "$(docker ps | grep archiveteam/warrior-dockerfile)" ]; then
 echo "Startup Failure! Unable to start the Docker Instance, Sleeping 30 Seconds"
 sleep 30
-exit
+exit 1
 fi
 
 echo
