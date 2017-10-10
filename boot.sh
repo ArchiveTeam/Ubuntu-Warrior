@@ -19,7 +19,7 @@ if [ $? -eq 0 ]; then
     echo "Online!"
     break
 else
-    SLEEP_TIME=$MIN_CHECK_INTERVAL + $(($RANDOM % $MAX_CHECK_INTERVAL))
+    SLEEP_TIME=$(($MIN_CHECK_INTERVAL + $RANDOM % $MAX_CHECK_INTERVAL))
     echo "Unable to access the Internet"
     echo "Trying $CHECK_HOST again in $SLEEP_TIME seconds"
     sleep $SLEEP_TIME
@@ -36,7 +36,7 @@ if [ $? -eq 0 ]; then
     echo "Done!"
     break
 else
-    SLEEP_TIME=$MIN_CHECK_INTERVAL + $(($RANDOM % $MAX_CHECK_INTERVAL))
+    SLEEP_TIME=$(($MIN_CHECK_INTERVAL + $RANDOM % $MAX_CHECK_INTERVAL))
     echo "Unable to download the startup script"
     echo "Trying again in $SLEEP_TIME seconds"
     sleep ${SLEEP_TIME}
