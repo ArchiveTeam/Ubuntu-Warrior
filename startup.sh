@@ -1,7 +1,7 @@
 #!/bin/sh
 reset
 echo "=== Starting Warrior Download ==="
-docker run -d -p 8001:8001 --cidfile "/root/docker_container_id.txt" \
+docker run -d -p 8001:8001 --cidfile="/root/docker_container_id.txt" \
     archiveteam/warrior-dockerfile
 
 reset
