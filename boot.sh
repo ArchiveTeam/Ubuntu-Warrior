@@ -47,5 +47,7 @@ done
 
 chmod +x /root/startup.sh
 /root/startup.sh
-echo ==== Startup Script Failed, Restarting! ====
-sleep 1
+
+SLEEP_TIME=$(($MIN_CHECK_INTERVAL + $RANDOM % $MAX_CHECK_INTERVAL))
+echo ==== Startup Script Failed, Restarting in $SLEEP_TIME seconds! ====
+sleep $SLEEP_TIME
