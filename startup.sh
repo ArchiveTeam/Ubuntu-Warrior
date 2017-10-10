@@ -22,7 +22,7 @@ echo " http://127.0.0.1:8001"
 echo
 sleep 120
 
-CONTAINER_ID = `cat /root/docker_container_id.txt`
+CONTAINER_ID=`cat /root/docker_container_id.txt`
 
 while true; do
 sleep 10
