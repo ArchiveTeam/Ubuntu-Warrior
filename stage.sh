@@ -6,7 +6,7 @@
 # Keyboard: us | Variant: us
 # Hostname: warrior
 # Network: eth0 dhcp no manual config
-# Root Password: warrior
+# Root Password: archiveteam
 # UTC Timezone
 # No HTTP Proxy
 # Mirror: dl-2.alpinelinux.org
@@ -17,7 +17,7 @@
 # apk add openssl
 # wget https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/stage.sh
 
-# /etc/inittab 
+# /etc/inittab
 rm /etc/inittab
 cat <<EOT >> /etc/inittab
 ::sysinit:/sbin/openrc sysinit
@@ -39,7 +39,13 @@ tty6::respawn:/sbin/getty 38400 tty6
 ::shutdown:/sbin/openrc shutdown
 EOT
 
-echo "==== Archive Team Warrior ====" > /etc/motd
+echo 'The root password is "archiveteam".' >> /target/etc/issue
+cat >/etc/motd <<END
+==== Archive Team Warrior ====
+
+The warrior instance is running within a Docker container.
+For details, see the ArchiveTeam wiki and Docker documentation.
+END
 
 # add community sources
 echo "http://dl-3.alpinelinux.org/alpine/v3.6/community" >> /etc/apk/repositories
