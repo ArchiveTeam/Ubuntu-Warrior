@@ -39,7 +39,7 @@ tty6::respawn:/sbin/getty 38400 tty6
 ::shutdown:/sbin/openrc shutdown
 EOT
 
-echo 'The root password is "archiveteam".' >> /target/etc/issue
+echo 'The root password is "archiveteam".' >> /etc/issue
 cat >/etc/motd <<END
 ==== Archive Team Warrior ====
 
