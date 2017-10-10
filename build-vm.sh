@@ -14,7 +14,6 @@ VBoxManage modifyvm $VMNAME \
   --cpuhotplug off \
   --pae on \
   --hwvirtex on \
-  --hwvirtexexcl on \
   --nestedpaging on \
   --largepages off \
   --accelerate3d off \
