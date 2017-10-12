@@ -1,9 +1,13 @@
 #!/bin/sh
 reset
 echo "=== Starting Warrior Download ==="
-rm -f /root/docker_container_id.txt
-docker run -d -p 8001:8001 --cidfile="/root/docker_container_id.txt" \
-    archiveteam/warrior-dockerfile
+if [ -f /root/docker_container_id.txt ]; then
+    CONTAINER_ID=`cat /root/docker_container_id.txt`
+    docker start $CONTAINER_ID
+else
+    docker run -d -p 8001:8001 --cidfile="/root/docker_container_id.txt" \
+        archiveteam/warrior-dockerfile
+fi
 
 reset
 if [ ! "$(docker ps | grep archiveteam/warrior-dockerfile)" ]; then
