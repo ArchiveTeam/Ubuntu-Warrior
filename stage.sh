@@ -39,6 +39,12 @@ tty6::respawn:/sbin/getty 38400 tty6
 ::shutdown:/sbin/openrc shutdown
 EOT
 
+# Disable the console screensaver
+if ! grep "consoleblank=0" /etc/update-extlinux.conf; then
+    sed -E -e 's/(default_kernel_opts="[^"]+)/\1 consoleblank=0/' /etc/update-extlinux.conf
+    update-extlinux
+fi
+
 echo 'The root password is "archiveteam".' >> /etc/issue
 cat >/etc/motd <<END
 ==== Archive Team Warrior ====
