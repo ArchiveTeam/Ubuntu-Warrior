@@ -41,7 +41,7 @@ EOT
 
 # Disable the console screensaver
 if ! grep "consoleblank=0" /etc/update-extlinux.conf; then
-    sed -E -e 's/(default_kernel_opts="[^"]+)/\1 consoleblank=0/' /etc/update-extlinux.conf
+    sed -i -E -e 's/(default_kernel_opts="[^"]+)/\1 consoleblank=0/' /etc/update-extlinux.conf
     update-extlinux
 fi
 
