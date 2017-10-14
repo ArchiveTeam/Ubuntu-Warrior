@@ -9,12 +9,32 @@ else
         archiveteam/warrior-dockerfile
 fi
 
-reset
 if [ ! "$(docker ps | grep archiveteam/warrior-dockerfile)" ]; then
-echo "Startup Failure! Unable to start the Docker Instance, Sleeping 30 Seconds"
+echo "***** Startup Failure! ******"
+echo "Unable to start the Docker Instance"
+echo "Sleeping 30 seconds before retrying..."
 sleep 30
 exit 1
 fi
+
+CONTAINER_ID=`cat /root/docker_container_id.txt`
+
+echo "Warrior is updating Seesaw Kit."
+echo "The web interface will be ready at http://127.0.0.1:8001 soon."
+echo "Please wait..."
+
+for i in `seq 60`; do
+sleep 5
+if docker top $CONTAINER_ID | grep run-warrior; then
+    break
+elif [ $i -eq 60 ]; then
+    echo "***** Startup Failure! ******"
+    echo "Seesaw Kit did not successfully boot up and update."
+    echo "Sleeping 30 seconds before retrying..."
+    sleep 30
+    exit 1
+fi
+done
 
 echo
 echo "=== Archive Team Warrior ==="
@@ -25,9 +45,7 @@ echo "To manage your warrior, open your web browser"
 echo "and login to the web interface at"
 echo " http://127.0.0.1:8001"
 echo
-sleep 120
-
-CONTAINER_ID=`cat /root/docker_container_id.txt`
+sleep 20
 
 while true; do
 sleep 10
