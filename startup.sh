@@ -19,6 +19,9 @@ fi
 
 CONTAINER_ID=`cat /root/docker_container_id.txt`
 
+docker exec -it $CONTAINER_ID rm -f /tmp/warrior_reboot_required \
+    /tmp/warrior_poweroff_required
+
 echo "Warrior is updating Seesaw Kit."
 echo "The web interface will be ready at http://127.0.0.1:8001 soon."
 echo "Please wait..."
