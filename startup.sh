@@ -36,6 +36,7 @@ elif [ $i -eq 60 ]; then
 fi
 done
 
+reset
 echo
 echo "=== Archive Team Warrior ==="
 echo
