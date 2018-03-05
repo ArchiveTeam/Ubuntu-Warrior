@@ -1,8 +1,11 @@
-# Ubuntu-Warrior
+# Ubuntu-Warrior (a.k.a. Warrior 3)
 
-This project is for building a Warrior Virtual Machine Appliance for the year 2017.
+This project is for building a Warrior Virtual Machine Appliance for the year 2017. It also contains the necessary boot up scripts that this Warrior will update from.
 
 For building the older version, see https://github.com/ArchiveTeam/warrior-preseed
+
+If you wanted to download the warrior, see https://warriorhq.archiveteam.org/downloads/warrior3/. For support, see https://www.archiveteam.org/index.php?title=Warrior.
+
 
 ## Building a warrior
 
@@ -18,5 +21,12 @@ For building the older version, see https://github.com/ArchiveTeam/warrior-prese
 10. Run `wget https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/stage.sh`
 11. Run `chmod +x stage.sh; ./stage.sh`
 12. Wait and then reboot.
-13. Wait for it to install the (Docker instance)[https://github.com/ArchiveTeam/warrior-dockerfile] and (warrior-code2)[https://github.com/ArchiveTeam/warrior-code2].
+13. Wait for it to install the [Docker instance](https://github.com/ArchiveTeam/warrior-dockerfile) and [warrior-code2](https://github.com/ArchiveTeam/warrior-code2).
 14. Export the appliance by running `./pack-vm.sh`.
+
+
+## Updating boot scripts
+
+*Note: Do not push to master without testing! The warrior pulls files from this repository on boot up.*
+
+`boot.sh` is responsible for fetching a copy of `startup.sh`. This allows for easier maintenance but at the risk of breaking things. When testing, please edit `boot.sh` to point to a separate branch.
