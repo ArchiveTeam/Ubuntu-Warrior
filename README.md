@@ -1,6 +1,6 @@
 # Ubuntu-Warrior (a.k.a. Warrior 3)
 
-This project is for building a Warrior Virtual Machine Appliance for the year 2017. It also contains the necessary boot up scripts that this Warrior will update from.
+This project is for building a Warrior Virtual Machine Appliance for the year 2017-2020. It also contains the necessary boot up scripts that this Warrior will update from.
 
 For building the older version, see https://github.com/ArchiveTeam/warrior-preseed
 
@@ -29,4 +29,4 @@ If you wanted to download the warrior, see https://warriorhq.archiveteam.org/dow
 
 *Note: Do not push to master without testing! The warrior pulls files from this repository on boot up.*
 
-`boot.sh` is responsible for fetching a copy of `startup.sh`. This allows for easier maintenance but at the risk of breaking things. When testing, please edit `boot.sh` to point to a separate branch.
+`boot.sh` is responsible for fetching a copy of `startup.sh`. This allows for easier maintenance but at the risk of breaking things. When testing, please look at `boot.sh` and edit `/root/repo_prefix.txt` and/or `/root/branch.txt` to point to a separate branch.
