@@ -75,4 +75,6 @@ chmod +x /root/boot.sh
 apk update
 apk add docker
 rc-update add docker boot
+echo "cgroup  /sys/fs/cgroup  cgroup  defaults  0   0" >> /etc/fstab
+
 echo "Script Completed, poweroff the virtual machine and package for upload!"
