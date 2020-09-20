@@ -7,6 +7,10 @@ if [ -f /root/docker_container_id.txt ]; then
 else
     docker run -d -p 8001:8001 --cidfile="/root/docker_container_id.txt" \
         archiveteam/warrior-dockerfile
+    CONTAINER_ID=`cat /root/docker_container_id.txt`
+
+    # Allow reading network stats by non-root
+    docker exec -it $CONTAINER_ID adduser warrior dip
 fi
 
 if [ ! "$(docker ps | grep archiveteam/warrior-dockerfile)" ]; then
