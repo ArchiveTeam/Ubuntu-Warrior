@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VMNAME="archiveteam-warrior-3.1"
-INSTALL_ISO="alpine-virt-3.6.2-x86_64.iso"
+INSTALL_ISO="alpine-virt-3.12.0-x86_64.iso"
 
 VBoxManage createvm --name $VMNAME --ostype Linux_64 --register
 VBoxManage modifyvm $VMNAME \

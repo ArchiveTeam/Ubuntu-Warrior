@@ -1,7 +1,7 @@
 #!/bin/sh
 #This script is to setup a default install of Alpine Linux installed to disk.
 # The Following Settings where used in the install
-# ISO: alpine-virt-3.6.2-x86_64.iso
+# ISO: alpine-virt-3.12.0-x86_64.iso
 # Disk: Blank
 # Keyboard: us | Variant: us
 # Hostname: warrior
