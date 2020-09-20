@@ -17,6 +17,16 @@
 # apk add openssl
 # wget https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/stage.sh
 
+REPO_PREFIX=https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/
+BRANCH=master
+
+if [ -f /root/repo_prefix.txt ]; then
+    REPO_PREFIX=`cat /root/repo_prefix.txt`
+fi
+if [ -f /root/branch.txt ]; then
+    BRANCH=`cat /root/branch.txt`
+fi
+
 # /etc/inittab
 rm /etc/inittab
 cat <<EOT >> /etc/inittab
@@ -58,7 +68,7 @@ echo "http://dl-3.alpinelinux.org/alpine/v3.6/community" >> /etc/apk/repositorie
 set > /root/env.sh
 
 #download boot script
-wget https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/master/boot.sh -O /root/boot.sh
+wget ${REPO_PREFIX}${BRANCH}/boot.sh -O /root/boot.sh
 chmod +x /root/boot.sh
 
 #Update and install Docker
