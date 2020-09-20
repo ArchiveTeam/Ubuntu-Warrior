@@ -64,7 +64,7 @@ For details, see the ArchiveTeam wiki and Docker documentation.
 END
 
 # add community sources
-echo "http://dl-3.alpinelinux.org/alpine/v3.6/community" >> /etc/apk/repositories
+echo "http://dl-3.alpinelinux.org/alpine/v3.12/community" >> /etc/apk/repositories
 set > /root/env.sh
 
 #download boot script
