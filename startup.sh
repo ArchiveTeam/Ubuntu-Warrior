@@ -54,7 +54,7 @@ echo "and login to the web interface at"
 echo "  http://127.0.0.1:8001"
 echo
 echo "Advanced info:"
-echo "  These IP addreses are bound to eth0:"
+echo "  These IP addresses are bound to eth0:"
 ip addr show dev eth0 | awk '{if (match($1, "inet6?") != 0) print "  > "$2}'
 echo
 sleep 20
