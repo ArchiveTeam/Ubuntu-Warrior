@@ -5,13 +5,13 @@ MAX_CHECK_INTERVAL=300
 REPO_PREFIX=https://raw.githubusercontent.com/ArchiveTeam/Ubuntu-Warrior/
 BRANCH=master
 
+source /root/env.sh
 if [ -f /root/repo_prefix.txt ]; then
     REPO_PREFIX=`cat /root/repo_prefix.txt`
 fi
 if [ -f /root/branch.txt ]; then
     BRANCH=`cat /root/branch.txt`
 fi
-source /root/env.sh
 reset
 
 echo === Starting Archive Team Warrior ===
