@@ -89,8 +89,11 @@ if docker exec -it warrior test -f /tmp/warrior_reboot_required; then
     echo "Detected warrior needing reboot. Rebooting!"
     reboot
 elif docker exec -it warrior test -f /tmp/warrior_poweroff_required; then
-    echo "Detected warrior needing poweroff. Powering off!"
-    poweroff
+    sleep 5 # Prevent a Watchtower update from shutting down the system
+    if docker exec -it warrior test -f /tmp/warrior_poweroff_required; then
+        echo "Detected warrior needing poweroff. Powering off!"
+        poweroff
+    fi
 elif docker ps -f name=warrior -f status=dead | grep warrior; then
     echo "Docker container instance dead. Rebooting!"
     reboot
