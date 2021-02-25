@@ -49,8 +49,8 @@ if [ ! "$(docker ps -a --format {{.Names}} | grep warrior)" ]; then
     # Mount the user configuration from the host container
     # https://stackoverflow.com/a/54787364, https://docs.docker.com/storage/bind-mounts
     docker run -d -p 8001:8001 --name warrior -v /root/config.json:/home/warrior/projects/config.json atdr.meo.ws/archiveteam/warrior-dockerfile
-    # Allow reading network stats by non-root
-    docker exec -it warrior adduser warrior dip
+    # Allow reading network stats by non-root (unneeded and outputs a permissions error)
+    # docker exec -it warrior adduser warrior dip
 else
     docker start warrior
 fi
