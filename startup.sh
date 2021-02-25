@@ -8,7 +8,7 @@ if [ -f /root/docker_container_id.txt ]; then
     docker cp $CONTAINER_ID:/home/warrior/projects/config.json /root/config.json
     echo "Cleaning up the old version..."
     docker rm $CONTAINER_ID
-    docker system prune -a -f --volumes
+    docker system prune -a -f
     rm /root/docker_container_id.txt
     echo "Now ready to install the new Warrior and automatic updater!"
 fi
