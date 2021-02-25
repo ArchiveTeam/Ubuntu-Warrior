@@ -52,6 +52,8 @@ if [ ! "$(docker ps -a --format {{.Names}} | grep warrior)" ]; then
     # Allow reading network stats by non-root
     # Run the adduser command as root: https://stackoverflow.com/a/35485346
     docker exec -u 0 -it warrior adduser warrior dip
+    # Restart the container to apply the access changes
+    docker restart warrior
 else
     docker start warrior
 fi
