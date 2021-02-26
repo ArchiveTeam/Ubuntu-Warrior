@@ -85,12 +85,14 @@ wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-restart-640x400-32.fb -O /root/s
 apk update
 apk add v86d
 # https://wiki.alpinelinux.org/wiki/Uvesafb, https://wiki.archlinux.org/index.php/uvesafb#Define_a_resolution
+# the following file might change in future Alpine versions
 cat <<EOT >> /etc/mkinitfs/mkinitfs.conf
 features="ata base ide scsi usb virtio ext4 kms v86d"
 files="/etc/modprobe.d/uvesafb.conf"
 EOT
 echo "options uvesafb mode_option=640x400-32 scroll=ywrap" > /etc/modprobe.d/uvesafb.conf
 mkinitfs -o /boot/initramfs-virt
+# the following file might change in future Alpine versions
 sed -i '/modules=/c modules=sd-mod,usb-storage,ext4,uvesafb' /etc/update-extlinux.conf
 update-extlinux
 
