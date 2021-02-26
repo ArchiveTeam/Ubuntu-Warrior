@@ -30,9 +30,10 @@ fi
 # /etc/inittab
 rm /etc/inittab
 cat <<EOT >> /etc/inittab
-::sysinit:/sbin/openrc sysinit
-::sysinit:/sbin/openrc boot
-::wait:/sbin/openrc default
+::sysinit:/bin/sh -c "cat /root/splashes/at-splash-startup-640x400-32.fb > /dev/fb0"
+::sysinit:/sbin/openrc sysinit --quiet > /dev/null 2>&1
+::sysinit:/sbin/openrc boot --quiet > /dev/null 2>&1
+::wait:/sbin/openrc default --quiet > /dev/null 2>&1
 
 # Set up a couple of getty's
 tty1::respawn:/bin/sh /root/boot.sh
@@ -46,7 +47,7 @@ tty6::respawn:/sbin/getty 38400 tty6
 ::ctrlaltdel:/sbin/reboot
 
 # Stuff to do before rebooting
-::shutdown:/sbin/openrc shutdown
+::shutdown:/sbin/openrc shutdown --quiet > /dev/null 2>&1
 EOT
 
 # Disable the console screensaver
