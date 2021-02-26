@@ -71,6 +71,19 @@ set > /root/env.sh
 wget ${REPO_PREFIX}${BRANCH}/boot.sh -O /root/boot.sh
 chmod +x /root/boot.sh
 
+# Update, install and configure framebuffer
+apk update
+apk add v86d
+# https://wiki.alpinelinux.org/wiki/Uvesafb, https://wiki.archlinux.org/index.php/uvesafb#Define_a_resolution
+cat <<EOT >> /etc/mkinitfs/mkinitfs.conf
+features="ata base ide scsi usb virtio ext4 kms v86d"
+files="/etc/modprobe.d/uvesafb.conf"
+EOT
+echo "options uvesafb mode_option=640x400-32 scroll=ywrap" > /etc/modprobe.d/uvesafb.conf
+mkinitfs -o /boot/initramfs-virt
+sed -i '/modules=/c modules=sd-mod,usb-storage,ext4,uvesafb' /etc/update-extlinux.conf
+update-extlinux
+
 #Update and install Docker
 apk update
 apk add docker
