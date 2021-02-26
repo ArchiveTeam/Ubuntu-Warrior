@@ -1,0 +1,13 @@
+# Updated from https://github.com/ArchiveTeam/warrior-preseed/blob/master/splash/make-splash.sh
+
+convert Archive_team-white.png -resize 280x -repage 640x400+150+40 -background "#cccccc" -flatten +matte -pointsize 14 -font DejaVu-Sans -gravity Center -annotate +0+175 "The Archive Team Warrior is ready!\nPoint your web browser to http://localhost:8001/ to manage your warrior." splashes_png/at-splash-ready-640x400-32.png && python3 png2fb.py splashes_png/at-splash-ready-640x400-32.png splashes/at-splash-ready-640x400-32.fb
+
+convert Archive_team-white.png -resize 280x -repage 640x400+150+40 -background "#cccccc" -flatten +matte -pointsize 14 -font DejaVu-Sans -gravity Center -annotate +0+175 "The Archive Team Warrior is downloading and installing updates...\nThis may take a few minutes..." splashes_png/at-splash-update-640x400-32.png && python3 png2fb.py splashes_png/at-splash-update-640x400-32.png splashes/at-splash-update-640x400-32.fb
+
+convert Archive_team-white.png -resize 280x -repage 640x400+150+40 -background "#cccccc" -flatten +matte -pointsize 14 -font DejaVu-Sans -gravity Center -annotate +0+175 "This Archive Team Warrior needs an update.\nPlease visit https://archiveteam.org/index.php/Warrior for more details." splashes_png/at-splash-outdated-640x400-32.png && python3 png2fb.py splashes_png/at-splash-outdated-640x400-32.png splashes/at-splash-outdated-640x400-32.fb
+
+convert Archive_team-white.png -resize 280x -repage 640x400+150+40 -background "#cccccc" -flatten +matte -pointsize 14 -font DejaVu-Sans -gravity Center -annotate +0+175 "The Archive Team Warrior is starting up..." splashes_png/at-splash-startup-640x400-32.png && python3 png2fb.py splashes_png/at-splash-startup-640x400-32.png splashes/at-splash-startup-640x400-32.fb
+
+convert Archive_team-white.png -resize 280x -repage 640x400+150+40 -background "#cccccc" -flatten +matte -pointsize 14 -font DejaVu-Sans -gravity Center -annotate +0+175 "The Archive Team Warrior is shutting down..." splashes_png/at-splash-shutdown-640x400-32.png && python3 png2fb.py splashes_png/at-splash-shutdown-640x400-32.png splashes/at-splash-shutdown-640x400-32.fb
+
+convert Archive_team-white.png -resize 280x -repage 640x400+150+40 -background "#cccccc" -flatten +matte -pointsize 14 -font DejaVu-Sans -gravity Center -annotate +0+175 "The Archive Team Warrior is restarting..." splashes_png/at-splash-restart-640x400-32.png && python3 png2fb.py splashes_png/at-splash-restart-640x400-32.png splashes/at-splash-restart-640x400-32.fb
