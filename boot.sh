@@ -50,7 +50,7 @@ rm -f /root/startup.sh /root/startup.sh-new
 wget -q ${REPO_PREFIX}${BRANCH}/startup.sh -O /root/startup.sh-new
 if [ $? -eq 0 ]; then
     mv /root/startup.sh-new /root/startup.sh
-    if [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+    if ! [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
         echo "Done!"
     fi
     break
