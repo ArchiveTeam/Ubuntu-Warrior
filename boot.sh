@@ -12,15 +12,23 @@ fi
 if [ -f /root/branch.txt ]; then
     BRANCH=`cat /root/branch.txt`
 fi
-reset
 
-echo === Starting Archive Team Warrior ===
-echo Checking Internet
+if [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+    cat /root/splashes/at-splash-startup-640x400-32.fb > /dev/fb0
+else
+    reset
+
+    echo === Starting Archive Team Warrior ===
+    echo Checking Internet
+fi
+
 while true; do
 wget -q --spider https://$CHECK_HOST/
 
 if [ $? -eq 0 ]; then
-    echo "Online!"
+    if [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+        echo "Online!"
+    fi
     break
 else
     SLEEP_TIME=$(($MIN_CHECK_INTERVAL + $RANDOM % $MAX_CHECK_INTERVAL))
@@ -30,7 +38,10 @@ else
 fi
 done
 
-echo "Pulling Latest scripts"
+if [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+    echo "Pulling Latest scripts"
+fi
+
 if [ -f /root/startup.sh ]; then
     cp /root/startup.sh /root/startup.sh.bak
 fi
@@ -39,7 +50,9 @@ rm -f /root/startup.sh /root/startup.sh-new
 wget -q ${REPO_PREFIX}${BRANCH}/startup.sh -O /root/startup.sh-new
 if [ $? -eq 0 ]; then
     mv /root/startup.sh-new /root/startup.sh
-    echo "Done!"
+    if [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+        echo "Done!"
+    fi
     break
 else
     SLEEP_TIME=$(($MIN_CHECK_INTERVAL + $RANDOM % $MAX_CHECK_INTERVAL))
