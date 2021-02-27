@@ -74,12 +74,12 @@ chmod +x /root/boot.sh
 
 # Download splashes
 mkdir /root/splashes
-wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-ready-640x400-32.fb -O /root/splashes/at-splash-ready-640x400-32.fb
-wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-update-640x400-32.fb -O /root/splashes/at-splash-update-640x400-32.fb
-wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-outdated-640x400-32.fb -O /root/splashes/at-splash-outdated-640x400-32.fb
-wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-startup-640x400-32.fb -O /root/splashes/at-splash-startup-640x400-32.fb
-wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-shutdown-640x400-32.fb -O /root/splashes/at-splash-shutdown-640x400-32.fb
-wget ${REPO_PREFIX}${BRANCH}/splashes/at-splash-restart-640x400-32.fb -O /root/splashes/at-splash-restart-640x400-32.fb
+wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-ready-640x400-32.fb -O /root/splashes/at-splash-ready-640x400-32.fb
+wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-update-640x400-32.fb -O /root/splashes/at-splash-update-640x400-32.fb
+wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-outdated-640x400-32.fb -O /root/splashes/at-splash-outdated-640x400-32.fb
+wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-startup-640x400-32.fb -O /root/splashes/at-splash-startup-640x400-32.fb
+wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-shutdown-640x400-32.fb -O /root/splashes/at-splash-shutdown-640x400-32.fb
+wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-restart-640x400-32.fb -O /root/splashes/at-splash-restart-640x400-32.fb
 
 # Update, install and configure framebuffer
 apk update
