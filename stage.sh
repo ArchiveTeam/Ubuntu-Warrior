@@ -86,6 +86,7 @@ wget ${REPO_PREFIX}${BRANCH}/splash/splashes/at-splash-restart-640x400-32.fb -O 
 # Update, install and configure framebuffer
 apk update
 apk add v86d
+echo "sbin/v86d" > /etc/mkinitfs/features.d/v86d.files
 # https://wiki.alpinelinux.org/wiki/Uvesafb, https://wiki.archlinux.org/index.php/uvesafb#Define_a_resolution
 # the following file might change in future Alpine versions
 cat <<EOT >> /etc/mkinitfs/mkinitfs.conf
