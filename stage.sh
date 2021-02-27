@@ -44,9 +44,11 @@ tty5::respawn:/sbin/getty 38400 tty5
 tty6::respawn:/sbin/getty 38400 tty6
 
 # Stuff to do for the 3-finger salute
+::ctrlaltdel:/bin/sh -c "cat /root/splashes/at-splash-restart-640x400-32.fb > /dev/fb0"
 ::ctrlaltdel:/sbin/reboot
 
 # Stuff to do before rebooting
+::shutdown:/bin/sh -c "cat /root/splashes/at-splash-shutdown-640x400-32.fb > /dev/fb0"
 ::shutdown:/sbin/openrc shutdown --quiet > /dev/null 2>&1
 EOT
 
