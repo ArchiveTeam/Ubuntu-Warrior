@@ -26,7 +26,7 @@ while true; do
 wget -q --spider https://$CHECK_HOST/
 
 if [ $? -eq 0 ]; then
-    if ![ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+    if ! [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
         echo "Online!"
     fi
     break
@@ -38,7 +38,7 @@ else
 fi
 done
 
-if ![ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
+if ! [ -f /root/splashes/at-splash-startup-640x400-32.fb ]; then
     echo "Pulling Latest scripts"
 fi
 
