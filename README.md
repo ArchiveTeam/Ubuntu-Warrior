@@ -1,11 +1,14 @@
 # Ubuntu-Warrior (a.k.a. Warrior 3)
 
-This project is for building a Warrior Virtual Machine Appliance for the year 2017-2020. It also contains the necessary boot up scripts that this Warrior will update from.
+This project is for building a Warrior Virtual Machine Appliance for the year 2017-2021. It also contains the necessary boot up scripts that this Warrior will update from.
 
 For building the older version, see https://github.com/ArchiveTeam/warrior-preseed
 
-If you wanted to download the warrior, see https://warriorhq.archiveteam.org/downloads/warrior3/. For support, see https://www.archiveteam.org/index.php?title=Warrior.
+## Download a warrior
 
+If you wanted to download the warrior, see https://github.com/ArchiveTeam/Ubuntu-Warrior/releases or https://warriorhq.archiveteam.org/downloads/warrior3/. For support, see https://www.archiveteam.org/index.php?title=Warrior.
+
+Please note that from versions 3.2 and newer, the OVA file will be smaller. When the appliance starts up for the first time, additional data will be downloaded and installed before the warrior can be used. This will take a few minutes.
 
 ## Building a warrior
 
