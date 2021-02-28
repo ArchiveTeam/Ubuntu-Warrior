@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VMNAME="archiveteam-warrior-3.1"
-OVA_OUT="archiveteam-warrior-v3.1-$( date +%Y%m%d ).ova"
+VMNAME="archiveteam-warrior-3.2-beta"
+OVA_OUT="archiveteam-warrior-v3.2-beta-$( date +%Y%m%d ).ova"
 
 VBoxManage modifyhd --compact archiveteam-warrior-3-sys.vdi
 
@@ -11,4 +11,4 @@ VBoxManage export $VMNAME \
   --product "ArchiveTeam Warrior" \
   --vendor "ArchiveTeam" \
   --vendorurl "http://www.archiveteam.org/" \
-  --version "3.1"
+  --version "3.2-beta"
