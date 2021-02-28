@@ -77,4 +77,12 @@ apk add docker
 rc-update add docker boot
 echo "cgroup  /sys/fs/cgroup  cgroup  defaults  0   0" >> /etc/fstab
 
+# Reduce boot delay in boot configuration update script to 1 second (minimum)
+# In case update-extlinux is run and regenerates the boot configuration file
+sed -i '/timeout=/c timeout=1' /etc/update-extlinux.conf
+update-extlinux
+
+# Reduce boot delay to 0.1 seconds (minimum)
+sed -i '/TIMEOUT /c TIMEOUT 1' /boot/extlinux.conf # https://stackoverflow.com/a/43305210
+
 echo "Script Completed, poweroff the virtual machine and package for upload!"
