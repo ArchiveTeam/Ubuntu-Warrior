@@ -1,7 +1,7 @@
 #!/bin/sh
 #This script is to setup a default install of Alpine Linux installed to disk.
 # The Following Settings where used in the install
-# ISO: alpine-virt-3.12.0-x86_64.iso
+# ISO: alpine-virt-3.13.2-x86_64.iso
 # Disk: Blank
 # Keyboard: us | Variant: us
 # Hostname: warrior
@@ -64,7 +64,7 @@ For details, see the ArchiveTeam wiki and Docker documentation.
 END
 
 # add community sources
-echo "http://dl-3.alpinelinux.org/alpine/v3.12/community" >> /etc/apk/repositories
+echo "http://dl-3.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
 set > /root/env.sh
 
 #download boot script
