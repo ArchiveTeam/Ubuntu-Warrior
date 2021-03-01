@@ -36,8 +36,8 @@ cat <<EOT >> /etc/inittab
 
 # Set up a couple of getty's
 tty1::respawn:/bin/sh /root/boot.sh
-tty2::respawn:/sbin/getty 38400 tty2
-tty3::respawn:/sbin/getty 38400 tty3
+tty2::respawn:/bin/sh /root/warrior-logs.sh
+tty3::respawn:/bin/sh /root/watchtower-logs.sh
 tty4::respawn:/sbin/getty 38400 tty4
 tty5::respawn:/sbin/getty 38400 tty5
 tty6::respawn:/sbin/getty 38400 tty6
@@ -70,6 +70,12 @@ set > /root/env.sh
 #download boot script
 wget ${REPO_PREFIX}${BRANCH}/boot.sh -O /root/boot.sh
 chmod +x /root/boot.sh
+
+#download log scripts
+wget ${REPO_PREFIX}${BRANCH}/warrior-logs.sh -O /root/warrior-logs.sh
+chmod +x /root/warrior-logs.sh
+wget ${REPO_PREFIX}${BRANCH}/watchtower-logs.sh -O /root/watchtower-logs.sh
+chmod +x /root/watchtower-logs.sh
 
 #Update and install Docker
 apk update
