@@ -13,7 +13,7 @@ Please note that from versions 3.2 and newer, the OVA file will be smaller. When
 ## Building a warrior
 
 1. Install VirtualBox.
-2. Download the ISO file for Alpine Linux `alpine-virt-3.12.0-x86_64.iso`
+2. Download the ISO file for Alpine Linux `alpine-virt-3.13.2-x86_64.iso`
 3. Run `./build-vm.sh` to create an empty Virtual Machine.
 4. Boot up the virtual machine and wait for Alpine's login prompt to appear.
 5. Follow the instructions for installing to disk: https://wiki.alpinelinux.org/wiki/Install_to_disk using the options mentioned in `stage.sh`.

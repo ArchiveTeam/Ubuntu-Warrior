@@ -1,12 +1,12 @@
 #!/bin/bash
 
 VMNAME="archiveteam-warrior-3.2-beta"
-INSTALL_ISO="alpine-virt-3.12.0-x86_64.iso"
+INSTALL_ISO="alpine-virt-3.13.2-x86_64.iso"
 
 VBoxManage createvm --name $VMNAME --ostype Linux_64 --register
 VBoxManage modifyvm $VMNAME \
   --memory 400 \
-  --vram 1 \
+  --vram 12 \
   --acpi on \
   --ioapic on \
   --cpus 1 \
