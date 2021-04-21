@@ -34,9 +34,11 @@ if [ ! "$(docker ps -a --format {{.Names}} | grep instantwtower)" ]; then
     echo "Please wait while the Warrior checks for updates..."
     # Create a container so updates can be checked for on startup
     docker run --name instantwtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --run-once --no-startup-message
+    docker wait instantwtower # wait for the update check to complete
 else
     echo "Please wait while the Warrior checks for updates..."
     docker start instantwtower # check for updates now
+    docker wait instantwtower # wait for the update check to complete
 fi
 
 # If a container named watchtower does not exist, create and configure it.
