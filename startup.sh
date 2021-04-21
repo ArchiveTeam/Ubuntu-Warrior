@@ -32,9 +32,12 @@ chmod 777 /root/config.json
 # https://stackoverflow.com/a/50667460
 if [ ! "$(docker ps -a --format {{.Names}} | grep watchtower)" ]; then
     echo "Please wait while the automatic updater is prepared..."
-    docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --interval 3600
+    # Create a container so updates can be checked for on startup
+    docker run --name watchtower_runonce -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --run-once --no-startup-message
+    docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --interval 3600
 else
-    docker start watchtower
+    docker start watchtower_runonce # check for updates now
+    docker start watchtower # check for updates every hour
 fi
 
 # If a container named warrior does not exist, create and configure it.
