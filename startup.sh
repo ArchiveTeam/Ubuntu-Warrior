@@ -27,16 +27,25 @@ touch /root/config.json # https://unix.stackexchange.com/a/343558
 # Make sure the container has access to the config file
 chmod 777 /root/config.json
 
+# If a container named instantwtower does not exist, create and configure it.
+# This Watchtower container checks for updates immediately, deletes outdated images, and exits.
+# https://stackoverflow.com/a/50667460
+if [ ! "$(docker ps -a --format {{.Names}} | grep instantwtower)" ]; then
+    echo "Please wait while the Warrior checks for updates..."
+    # Create a container so updates can be checked for on startup
+    docker run --name instantwtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --run-once --no-startup-message
+else
+    echo "Please wait while the Warrior checks for updates..."
+    docker start instantwtower # check for updates now
+fi
+
 # If a container named watchtower does not exist, create and configure it.
 # Watchtower is configured to check for updates every hour, and to delete outdated images.
 # https://stackoverflow.com/a/50667460
 if [ ! "$(docker ps -a --format {{.Names}} | grep watchtower)" ]; then
     echo "Please wait while the automatic updater is prepared..."
-    # Create a container so updates can be checked for on startup
-    docker run --name watchtower_runonce -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --run-once --no-startup-message
     docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --interval 3600
 else
-    docker start watchtower_runonce # check for updates now
     docker start watchtower # check for updates every hour
 fi
 
