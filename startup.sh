@@ -29,16 +29,19 @@ chmod 777 /root/config.json
 
 # If a container named instantwtower does not exist, create and configure it.
 # This Watchtower container checks for updates immediately, deletes outdated images, and exits.
+# Note that this container name does not contain the string "watchtower" to avoid inaccurate grep results.
 # https://stackoverflow.com/a/50667460
 if [ ! "$(docker ps -a --format {{.Names}} | grep instantwtower)" ]; then
     echo "Please wait while the Warrior checks for updates..."
     # Create a container so updates can be checked for on startup
     docker run --name instantwtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup --include-stopped --run-once --no-startup-message
-    docker wait instantwtower # wait for the update check to complete
+    # wait for the update check to complete... this prevents the main Watchtower container from stopping itself because it found more than one Watchtower instance
+    docker wait instantwtower
 else
     echo "Please wait while the Warrior checks for updates..."
     docker start instantwtower # check for updates now
-    docker wait instantwtower # wait for the update check to complete
+    # wait for the update check to complete... this prevents the main Watchtower container from stopping itself because it found more than one Watchtower instance
+    docker wait instantwtower
 fi
 
 # If a container named watchtower does not exist, create and configure it.
