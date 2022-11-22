@@ -76,11 +76,11 @@ else
 fi
 
 if [ ! "$(docker ps -a --format {{.Names}} | grep warrior)" ]; then
-echo "***** Startup Failure! ******"
-echo "Unable to start the Docker Instance"
-echo "Sleeping 30 seconds before retrying..."
-sleep 30
-exit 1
+    echo "***** Startup Failure! ******"
+    echo "Unable to start the Docker Instance"
+    echo "Sleeping 30 seconds before retrying..."
+    sleep 30
+    exit 1
 fi
 
 docker exec -it warrior rm -f /tmp/warrior_reboot_required \
