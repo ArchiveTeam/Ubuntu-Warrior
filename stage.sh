@@ -67,18 +67,24 @@ END
 echo "http://dl-3.alpinelinux.org/alpine/v3.13/community" >> /etc/apk/repositories
 set > /root/env.sh
 
-#download boot script
+# Update package sources
+apk update
+
+# Install open-vm-tools
+apk add open-vm-tools open-vm-tools-guestinfo open-vm-tools-deploypkg
+rc-update add open-vm-tools boot
+
+# download boot script
 wget ${REPO_PREFIX}${BRANCH}/boot.sh -O /root/boot.sh
 chmod +x /root/boot.sh
 
-#download log scripts
+# download log scripts
 wget ${REPO_PREFIX}${BRANCH}/warrior-logs.sh -O /root/warrior-logs.sh
 chmod +x /root/warrior-logs.sh
 wget ${REPO_PREFIX}${BRANCH}/watchtower-logs.sh -O /root/watchtower-logs.sh
 chmod +x /root/watchtower-logs.sh
 
-#Update and install Docker
-apk update
+# Install Docker
 apk add docker
 rc-update add docker boot
 echo "cgroup  /sys/fs/cgroup  cgroup  defaults  0   0" >> /etc/fstab
