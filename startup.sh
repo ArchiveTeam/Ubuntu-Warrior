@@ -42,7 +42,7 @@ elif grep -s -q "updating" /root/alpine_updating.txt || grep -q "v3.13" "/etc/ap
 else
    echo "=== ACTION REQUIRED: PLEASE UPGRADE YOUR VIRTUAL MACHINE ==="
    echo ""
-   echo "Your version of the Archive Team Warrior (version 3.0 (2017), 3.1 (2020), or 3.2-beta (2021)) is no longer compatible with the latest Warrior updates."
+   echo "Your version of the Archive Team Warrior (version 3.0 (2017), 3.1 (2020), or 3.2-beta (2021)) is no longer compatible with the latest Warrior updates as of December 2023."
    echo ""
    echo "Please delete this VM and replace it with Warrior 3.2, Warrior 4, or later, available at https://warriorhq.archiveteam.org/downloads/."
    echo ""
