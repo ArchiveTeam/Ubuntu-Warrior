@@ -29,6 +29,7 @@ else
     sync
     echo "Alpine/Docker updates complete, now rebooting"
     reboot
+    sleep 5
 fi
 
 echo "=== Starting Warrior Download ==="
