@@ -9,23 +9,30 @@ if grep -q "v3.19" "/etc/apk/repositories"; then
     :
 # Warrior 3.2, upgrade possible
 # Update Alpine Linux from 3.13.2 to 3.19
-elif grep -q "v3.13" "/etc/apk/repositories"; then
-    echo "=== Updating Alpine and Docker ==="
-    echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
-    # Signing keys were rotated, update them
-    apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.13/main -u alpine-keys
-    echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories
-    echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community/" >> /etc/apk/repositories
-    # Note: this updates to the latest Docker/package version available for Alpine Linux 3.19 at the time the upgrade occurs.
-    # This may ultimately result in different users having slightly different versions of Docker/system packages installed,
-    # but this will stabilize once Alpine 3.19 exits support.
-    # Additional note: the terminal will still display "Welcome to Alpine Linux 3.13" at the login prompt
-    apk update
-    apk add --upgrade apk-tools
-    apk upgrade --available
-    # https://wiki.alpinelinux.org/wiki/Upgrading_Alpine#Upgrading_an_Alpine_Linux_Hard-disk_installation
-    sync
-    echo "Alpine/Docker updates complete, now rebooting"
+elif grep -q "v3.13" "/etc/apk/repositories"; || [ -f alpine_updating.txt ] then
+    if
+        touch "alpine_updating.txt" &&
+        echo "=== Updating Alpine and Docker ===" &&
+        echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates" &&
+        # Signing keys were rotated, update them
+        apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.13/main -u alpine-keys &&
+        echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories &&
+        echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community/" >> /etc/apk/repositories &&
+        # Note: this updates to the latest Docker/package version available for Alpine Linux 3.19 at the time the upgrade occurs.
+        # This may ultimately result in different users having slightly different versions of Docker/system packages installed,
+        # but this will stabilize once Alpine 3.19 exits support.
+        # Additional note: the terminal will still display "Welcome to Alpine Linux 3.13" at the login prompt
+        apk update &&
+        apk add --upgrade apk-tools &&
+        apk upgrade --available &&
+        # https://wiki.alpinelinux.org/wiki/Upgrading_Alpine#Upgrading_an_Alpine_Linux_Hard-disk_installation
+        sync
+    then
+        rm alpine_updating.txt
+        echo "Alpine/Docker updates complete, now rebooting"
+    else
+        echo "Alpine update failed, rebooting"
+    fi
     reboot
     sleep 5
 # EOL message for version 3.0, 3.1, and 3.2-beta
