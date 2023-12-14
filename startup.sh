@@ -5,11 +5,11 @@ reset
 
 # no upgrade needed
 # https://stackoverflow.com/a/11287896
-if grep -q "v3.19" "/etc/apk/repositories" && ! grep -q "updating" /root/alpine_updating.txt; then
+if grep -q "v3.19" "/etc/apk/repositories" && ! grep -s -q "updating" /root/alpine_updating.txt; then
     :
 # Warrior 3.2, upgrade possible
 # Update Alpine Linux from 3.13.2 to 3.19
-elif grep -q "updating" /root/alpine_updating.txt || grep -q "v3.13" "/etc/apk/repositories"; then
+elif grep -s -q "updating" /root/alpine_updating.txt || grep -q "v3.13" "/etc/apk/repositories"; then
     if
         echo "updating" >| /root/alpine_updating.txt &&
         echo "=== Updating Alpine and Docker ===" &&
