@@ -1,5 +1,35 @@
 #!/bin/sh
 reset
+
+# Upgrade Alpine/Docker if necessary
+# https://stackoverflow.com/a/59287182
+SERVER_VERSION=$(docker version -f "{{.Server.Version}}")
+SERVER_VERSION_MAJOR=$(echo "$SERVER_VERSION"| cut -d'.' -f 1)
+SERVER_VERSION_MINOR=$(echo "$SERVER_VERSION"| cut -d'.' -f 2)
+SERVER_VERSION_BUILD=$(echo "$SERVER_VERSION"| cut -d'.' -f 3)
+
+if [ "${SERVER_VERSION_MAJOR}" -ge 24 ] && \
+   [ "${SERVER_VERSION_MINOR}" -ge 0 ]  && \
+   [ "${SERVER_VERSION_BUILD}" -ge 7 ]; then
+    reset
+else
+    echo "=== Updating Alpine and Docker ==="
+    echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community/" >> /etc/apk/repositories
+    apk add -X https://dl-cdn.alpinelinux.org/alpine/v3.19/main -u alpine-keys
+    # Note: this updates to the latest Docker/package version availables for Alpine 3.19 at the time the upgrade occurs.
+    # This may ultimately result in different users having slightly different versions of Docker/system packages installed,
+    # but this will stabilize once Alpine 3.19 exits support.
+    apk update
+    apk add --upgrade apk-tools
+    apk upgrade --available
+    # https://wiki.alpinelinux.org/wiki/Upgrading_Alpine
+    sync
+    echo "Alpine/Docker updates complete, now rebooting"
+    reboot
+fi
+
 echo "=== Starting Warrior Download ==="
 
 # Versions 3.0 and 3.1 of the VM image use a file at /root/docker_container_id.txt to keep track
