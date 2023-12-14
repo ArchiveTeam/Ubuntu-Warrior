@@ -15,6 +15,9 @@ if [ "${SERVER_VERSION_MAJOR}" -ge 24 ] && \
 else
     echo "=== Updating Alpine and Docker ==="
     echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
+    # Update apk-tools to fix segfault
+    apk update
+    apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.12/main -u apk-tools
     # Signing keys were rotated, update them
     apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.12/main -u alpine-keys
     # apk update
