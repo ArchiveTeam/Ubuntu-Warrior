@@ -11,7 +11,7 @@ if grep -q "v3.19" "/etc/apk/repositories"; then
 # Update Alpine Linux from 3.13.2 to 3.19
 elif [ -f /root/alpine_updating.txt ] || grep -q "v3.13" "/etc/apk/repositories"; then
     if
-        touch /root/alpine_updating.txt &&
+        echo "updating" >| /root/alpine_updating.txt &&
         echo "=== Updating Alpine and Docker ===" &&
         echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates" &&
         # Signing keys were rotated, update them
