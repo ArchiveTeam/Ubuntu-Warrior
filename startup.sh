@@ -2,24 +2,17 @@
 reset
 
 # Upgrade Alpine/Docker if necessary
-# https://stackoverflow.com/a/59287182
-SERVER_VERSION=$(docker version -f "{{.Server.Version}}")
-SERVER_VERSION_MAJOR=$(echo "$SERVER_VERSION"| cut -d'.' -f 1)
-SERVER_VERSION_MINOR=$(echo "$SERVER_VERSION"| cut -d'.' -f 2)
-SERVER_VERSION_BUILD=$(echo "$SERVER_VERSION"| cut -d'.' -f 3)
 
-if [ "${SERVER_VERSION_MAJOR}" -ge 24 ] && \
-   [ "${SERVER_VERSION_MINOR}" -ge 0 ]  && \
-   [ "${SERVER_VERSION_BUILD}" -ge 7 ]; then
-    reset
-else
+# no upgrade needed
+if grep -q "v3.19" "/etc/apk/repositories"; then
+    :
+# Warrior 3.2, upgrade possible
+# Update Alpine from 3.13.2 to 3.19
+elif grep -q "v3.13" "/etc/apk/repositories"; then
     echo "=== Updating Alpine and Docker ==="
     echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
-    # Update apk-tools to fix segfault
-    apk update
-    apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.12/main -u apk-tools
     # Signing keys were rotated, update them
-    apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.12/main -u alpine-keys
+    apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.13/main -u alpine-keys
     # apk update
     # apk add --upgrade --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.19/main -u apk-tools
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories
@@ -35,6 +28,18 @@ else
     echo "Alpine/Docker updates complete, now rebooting"
     reboot
     sleep 5
+# Warrior 3.0 segfaults during upgrade attempt
+# Warrior 3.1 and Warrior 3.2-beta also segfault during upgrade but that can be fixed by upgrading apk-tools to the latest version for Alpine 3.12 beforehand
+# However, 3.1 and 3.2-beta freeze on boot after the upgrade
+else
+   echo "=== ACTION REQUIRED: PLEASE UPGRADE YOUR VIRTUAL MACHINE ==="
+   echo "Your version of the Archive Team Warrior (version 3.0 (2017), 3.1 (2020), or 3.2-beta (2021)) is no longer 
+   compatible with the latest Warrior updates."
+   echo "Please delete this VM and replace it with Warrior 3.2, Warrior 4, or later, available at 
+   https://warriorhq.archiveteam.org/downloads/."
+   echo "If you have any questions please visit our wiki: https://wiki.archiveteam.org/index.php/ArchiveTeam_Warrior or join us on IRC: #warrior on irc.hackint.org."
+   echo "Apologies for the inconvenience, and thank you for contributing to Archive Team projects!"
+   exit
 fi
 
 echo "=== Starting Warrior Download ==="
