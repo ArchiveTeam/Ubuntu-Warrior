@@ -17,15 +17,15 @@ else
     echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
     # Signing keys were rotated, update them
     apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.12/main -u alpine-keys
-    apk update
-    apk add --upgrade --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.19/main -u apk-tools
+    # apk update
+    # apk add --upgrade --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.19/main -u apk-tools
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community/" >> /etc/apk/repositories
     # Note: this updates to the latest Docker/package version availables for Alpine 3.19 at the time the upgrade occurs.
     # This may ultimately result in different users having slightly different versions of Docker/system packages installed,
     # but this will stabilize once Alpine 3.19 exits support.
     apk update
-    # apk add --upgrade apk-tools
+    apk add --upgrade apk-tools
     apk upgrade --available
     # https://wiki.alpinelinux.org/wiki/Upgrading_Alpine
     sync
