@@ -42,6 +42,8 @@ else
    echo ""
    echo "Apologies for the inconvenience, and thank you for contributing to Archive Team projects!"
    sleep 604800 # sleep for 1 week
+   reboot
+   sleep 5
    exit
 fi
 
