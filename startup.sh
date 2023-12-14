@@ -9,7 +9,7 @@ if grep -q "v3.19" "/etc/apk/repositories"; then
     :
 # Warrior 3.2, upgrade possible
 # Update Alpine Linux from 3.13.2 to 3.19
-elif grep -q "updating" "/root/alpine_updating.txt"; || grep -q "v3.13" "/etc/apk/repositories"; then
+elif grep -q "updating" "/root/alpine_updating.txt" || grep -q "v3.13" "/etc/apk/repositories"; then
     if
         echo "updating" >| /root/alpine_updating.txt &&
         echo "=== Updating Alpine and Docker ===" &&
