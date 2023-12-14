@@ -33,12 +33,15 @@ elif grep -q "v3.13" "/etc/apk/repositories"; then
 # However, 3.1 and 3.2-beta freeze on boot after the upgrade
 else
    echo "=== ACTION REQUIRED: PLEASE UPGRADE YOUR VIRTUAL MACHINE ==="
-   echo "Your version of the Archive Team Warrior (version 3.0 (2017), 3.1 (2020), or 3.2-beta (2021)) is no longer 
-   compatible with the latest Warrior updates."
-   echo "Please delete this VM and replace it with Warrior 3.2, Warrior 4, or later, available at 
-   https://warriorhq.archiveteam.org/downloads/."
+   echo ""
+   echo "Your version of the Archive Team Warrior (version 3.0 (2017), 3.1 (2020), or 3.2-beta (2021)) is no longer compatible with the latest Warrior updates."
+   echo ""
+   echo "Please delete this VM and replace it with Warrior 3.2, Warrior 4, or later, available at https://warriorhq.archiveteam.org/downloads/."
+   echo ""
    echo "If you have any questions please visit our wiki: https://wiki.archiveteam.org/index.php/ArchiveTeam_Warrior or join us on IRC: #warrior on irc.hackint.org."
+   echo ""
    echo "Apologies for the inconvenience, and thank you for contributing to Archive Team projects!"
+   sleep 604800 # sleep for 1 week
    exit
 fi
 
