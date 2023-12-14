@@ -15,9 +15,10 @@ if [ "${SERVER_VERSION_MAJOR}" -ge 24 ] && \
 else
     echo "=== Updating Alpine and Docker ==="
     echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
+    # Signing keys were rotated, update them
+    apk add -X https://dl-cdn.alpinelinux.org/alpine/v3.13/main -u alpine-keys
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community/" >> /etc/apk/repositories
-    apk add -X https://dl-cdn.alpinelinux.org/alpine/v3.19/main -u alpine-keys
     # Note: this updates to the latest Docker/package version availables for Alpine 3.19 at the time the upgrade occurs.
     # This may ultimately result in different users having slightly different versions of Docker/system packages installed,
     # but this will stabilize once Alpine 3.19 exits support.
