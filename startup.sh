@@ -5,7 +5,7 @@ reset
 
 # no upgrade needed
 # https://stackoverflow.com/a/11287896
-if grep -q "v3.19" "/etc/apk/repositories"; then
+if grep -q "v3.19" "/etc/apk/repositories" && [ ! -f "alpine_updating.txt" ]; then
     :
 # Warrior 3.2, upgrade possible
 # Update Alpine Linux from 3.13.2 to 3.19
