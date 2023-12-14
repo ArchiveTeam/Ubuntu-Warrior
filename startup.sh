@@ -1,9 +1,10 @@
 #!/bin/sh
 reset
 
-# Upgrade Alpine/Docker if necessary
+# Detect if Alpine/Docker upgrade is required
 
 # no upgrade needed
+# https://stackoverflow.com/a/11287896
 if grep -q "v3.19" "/etc/apk/repositories"; then
     :
 # Warrior 3.2, upgrade possible
@@ -13,24 +14,24 @@ elif grep -q "v3.13" "/etc/apk/repositories"; then
     echo "Alpine and Docker need to be updated in order to remain compatible with the latest Warrior updates"
     # Signing keys were rotated, update them
     apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.13/main -u alpine-keys
-    # apk update
-    # apk add --upgrade --no-cache -X https://dl-cdn.alpinelinux.org/alpine/v3.19/main -u apk-tools
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/" >| /etc/apk/repositories
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community/" >> /etc/apk/repositories
     # Note: this updates to the latest Docker/package version availables for Alpine 3.19 at the time the upgrade occurs.
     # This may ultimately result in different users having slightly different versions of Docker/system packages installed,
     # but this will stabilize once Alpine 3.19 exits support.
+    # Additional note: the terminal will still display "Welcome to Alpine Linux 3.13" at the login prompt
     apk update
     apk add --upgrade apk-tools
     apk upgrade --available
-    # https://wiki.alpinelinux.org/wiki/Upgrading_Alpine
+    # https://wiki.alpinelinux.org/wiki/Upgrading_Alpine#Upgrading_an_Alpine_Linux_Hard-disk_installation
     sync
     echo "Alpine/Docker updates complete, now rebooting"
     reboot
     sleep 5
+# EOL message for version 3.0, 3.1, and 3.2-beta
 # Warrior 3.0 segfaults during upgrade attempt
 # Warrior 3.1 and Warrior 3.2-beta also segfault during upgrade but that can be fixed by upgrading apk-tools to the latest version for Alpine 3.12 beforehand
-# However, 3.1 and 3.2-beta freeze on boot after the upgrade
+# However, 3.1 and 3.2-beta still freeze on boot after the upgrade
 else
    echo "=== ACTION REQUIRED: PLEASE UPGRADE YOUR VIRTUAL MACHINE ==="
    echo ""
