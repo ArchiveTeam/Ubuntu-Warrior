@@ -2,6 +2,8 @@
 
 This project is for building a Warrior Virtual Machine Appliance for the year 2017-2021. It also contains the necessary boot up scripts that this Warrior will update from.
 
+It was replaced by https://github.com/ArchiveTeam/warrior4-vm
+
 For building the older version, see https://github.com/ArchiveTeam/warrior-preseed
 
 ## Download a warrior
